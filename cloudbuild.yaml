@@ -1,0 +1,29 @@
+options:
+  logging: CLOUD_LOGGING_ONLY  # Use CLOUD_LOGGING_ONLY or NONE
+
+steps:
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['build', '-t', 'us-central1-docker.pkg.dev/ramakk-gcp/faballey/faballey:latest', '.']
+
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['push', 'us-central1-docker.pkg.dev/ramakk-gcp/faballey/faballey:latest']
+
+  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+    entrypoint: 'gcloud'
+    args:
+      - 'run'
+      - 'deploy'
+      - 'faballey-demo'
+      - '--image'
+      - 'us-central1-docker.pkg.dev/ramakk-gcp/faballey/faballey:latest'
+      - '--region'
+      - 'us-central1'
+      - '--platform'
+      - 'managed'
+      - '--allow-unauthenticated'
+      - '--port'
+      - '80'
+      - '--service-account'
+      - '155969219259-compute@developer.gserviceaccount.com'  # Replace with your service account email
+      - '--timeout'
+      - '300s'

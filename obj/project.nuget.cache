@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "FF858dUkgXk=",
+  "success": true,
+  "projectFilePath": "/root/feballey/Demo/Demo/Demo.csproj",
+  "expectedPackageFiles": [
+    "/root/.nuget/packages/microsoft.netcore.app.host.linux-x64/8.0.16/microsoft.netcore.app.host.linux-x64.8.0.16.nupkg.sha512"
+  ],
+  "logs": []
+}
